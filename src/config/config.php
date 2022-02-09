@@ -6,7 +6,7 @@ return [
      * @application database mysql or mongodb supported 
      *
      *
-     */
+     */ 
     'database' => env("DB_CONNECTION", "mongodb") ,
     /*
      *
