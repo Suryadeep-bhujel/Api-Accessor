@@ -18,21 +18,13 @@ class ApiAccessMiddleware
                 break;
             }
         }
-        //   dd($check);
+
         if ($check) {
             if (!$request->header(config('access_config.key_name'))) {
                 abort(403, "Unauthorized Request.");
             }
             if ($request->header(config('access_config.key_name'))) {
-                // $keys = AccessKey::where("status", true)->get();
-                // // dd($keys);
-                // $valid = false;
-                // foreach($keys as $keyItem){
-                //     // if(Hash::check($,   $keyItem->key)){
 
-                //     // }
-
-                // }
                 $check_key = AccessKey::where("key", $request->header(config('access_config.key_name')))
                     ->where('status', true)
                     ->first();
@@ -40,7 +32,7 @@ class ApiAccessMiddleware
                 if ($check_key) {
                     return $next($request);
                 } else {
-                    // return response()->json()
+
                     abort(403, "Access inactive or not exist.");
                 }
             }

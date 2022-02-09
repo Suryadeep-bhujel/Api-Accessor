@@ -93,15 +93,7 @@
             $temp.remove();
         }
         $("body").on('click', ".changeType", function() {
-            // if($(this).parent('td ').find("input").attr("type") == "text"){
-            //     $(this).children('span').addClass('fa-eye-slash').removeClass("fa-eye"); 
-            // }
-            // if($(this).parent('td ').find("input").attr("type") == 'password'){
-            //     $(this).children('span').addClass('fa-eye').removeClass('fa-eye-slash'); 
-
-            // }
-
-            // $(this).find(".fa").removeClass('fa-eye')
+          
             $(this).parent('td ').find("input").attr("type", 'text');
         })
     </script>

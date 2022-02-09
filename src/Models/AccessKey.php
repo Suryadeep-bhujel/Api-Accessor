@@ -3,8 +3,7 @@
 namespace Bhujel\SecretHeader\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-// use Jenssegers\Mongodb\Eloquent\Model;
+ 
 use Illuminate\Support\Str;
 
 if (config("access_config.database") == 'mysql' || config("access_config.database") == null) {
@@ -35,8 +34,7 @@ class AccessKey extends ModelFinder
     ];
     public function getUuidAttribute()
     {
-        // dd($this->id->toString());
-        // return  $this->id = Str::uuid()->toString();
+       
     }
     protected static function boot()
     {
@@ -58,8 +56,5 @@ class AccessKey extends ModelFinder
     {
         return 'string';
     }
-    // public function newQuery()
-    // {
-
-    // }
+   
 }

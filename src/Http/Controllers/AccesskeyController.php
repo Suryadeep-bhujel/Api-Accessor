@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Bhujel\SecretHeader\Models\AccessKey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Ramsey\Uuid\Uuid;
+
 class AccesskeyController extends Controller
 {
     public function __construct()
@@ -21,13 +20,12 @@ class AccesskeyController extends Controller
      */
     public function index()
     {
-        //
-        // dd('hello');
+
         $keys = AccessKey::get();
         $data = [
             "keys" => $keys,
         ];
-        // dd($keys);
+
         return view("accessor::list", $data);
     }
 
@@ -54,8 +52,7 @@ class AccesskeyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // dd($request->all());
+
         $this->validate($request, [
             'title' => "required|string|max:191",
             "type" => "required|boolean",
@@ -63,22 +60,17 @@ class AccesskeyController extends Controller
         ]);
 
         try {
-            // $uuid= Str::uuid();
-            // $uuid = Uuid::uuid4(); 
-            // $uuid= Str::uuid()->toString();
-            // dd($uuid);
+
             $data = $request->except('_token');
             $data['addedBy'] = @auth()->user()->id;
             $data['key'] = Hash::make($request->title . "-" . \Str::random(10));
-            // $data['id']  = $uuid;
-            // dd($data);
+
             AccessKey::create($data);
             $request->session()->flash("New Access key successfully added. ");
             return redirect()->route("access_keys.index");
         } catch (\Throwable$th) {
             report($th);
             throw $th;
-            // $request->session()->flash($th->getMessage());
 
         }
 
@@ -106,7 +98,7 @@ class AccesskeyController extends Controller
         //
 
         $key_info = AccessKey::findOrFail($id);
-        // dd($key_info);
+
         $data = [
             'title' => "Edit API Access Key",
             "keyInfo" => $key_info,
@@ -127,7 +119,7 @@ class AccesskeyController extends Controller
     {
         //
         $key_info = AccessKey::findOrFail($id);
-        // dd($key_info);
+
         try {
             $data = $request->except('_token');
             $data['addedBy'] = @auth()->user()->id;
@@ -138,7 +130,6 @@ class AccesskeyController extends Controller
         } catch (\Throwable$th) {
             report($th);
             throw $th;
-            // $request->session()->flash($th->getMessage());
 
         }
     }

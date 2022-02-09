@@ -7,7 +7,7 @@ return [
      *
      *
      */ 
-    'database' => env("DB_CONNECTION", "mongodb") ,
+    'database' => env("DB_CONNECTION", "mysql") ,
     /*
      *
      *
