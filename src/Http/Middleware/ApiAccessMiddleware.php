@@ -47,7 +47,6 @@ class ApiAccessMiddleware
             abort(403, "Unauthorized Request.");
         } else {
             return $next($request);
-
         }
     }
 }

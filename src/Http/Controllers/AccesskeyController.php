@@ -27,6 +27,7 @@ class AccesskeyController extends Controller
         $data = [
             "keys" => $keys,
         ];
+        // dd($keys);
         return view("accessor::list", $data);
     }
 

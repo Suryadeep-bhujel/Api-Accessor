@@ -141,7 +141,7 @@
     <script src="{{ asset('/api-accessor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/api-accessor/js/scripts.js') }}"></script>
     <script src="{{ asset('/api-accessor/js/chart.js') }}"></script>
-    <script src="{{ asset('/api-accessor.assets/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('/api-accessor/assets/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('/api-accessor/assets/demo/chart-bar-demo.js') }}"></script>
     <script src="{{ asset('/api-accessor/js/datatable.js') }}"></script>
     <script>
