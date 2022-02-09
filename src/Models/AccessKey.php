@@ -3,11 +3,26 @@
 namespace Bhujel\SecretHeader\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+
+// use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class AccessKey extends Model
+if (config("access_config.database") == 'mysql' || config("access_config.database") == null) {
+    class ModelFinder extends \Illuminate\Database\Eloquent\Model
+
+    {
+    }
+}
+
+if (config("access_config.database") == 'mongodb') {
+    class ModelFinder extends \Jenssegers\Mongodb\Eloquent\Model
+
+    {
+    }
+}
+class AccessKey extends ModelFinder
 {
+
     use HasFactory;
     protected $fillable = [
         "id",
@@ -27,7 +42,7 @@ class AccessKey extends Model
     {
         // Boot other traits on the Model
         parent::boot();
-        
+
         static::creating(function ($model) {
             // dd($model->getKey());
             if ($model->getKey() === null) {
@@ -37,11 +52,11 @@ class AccessKey extends Model
     }
     public function getIncrementing()
     {
-    return false;
+        return false;
     }
     public function getKeyType()
     {
-    return 'string';
+        return 'string';
     }
     // public function newQuery()
     // {
