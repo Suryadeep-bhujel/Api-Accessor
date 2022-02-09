@@ -21,7 +21,7 @@ class AccessServiceProvider extends ServiceProvider
         //     Alert::class,
         //     Button::class,
         // ]);
-        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'access_config');
+        $this->mergeConfigFrom(__DIR__.'/config/api_accessor.php', 'access_config');
         $httpKernel = $this->app->make(HttpKernelInterface::class);
      
         $httpKernel->pushMiddleware(  ApiAccessMiddleware::class);
@@ -33,6 +33,9 @@ class AccessServiceProvider extends ServiceProvider
 
         }
         Artisan::call("vendor:publish --tag=public --force");
+        $this->publishes([
+            __DIR__.'/config/api_accessor.php' => config_path('api_accessor.php'),
+        ], 'api-accessor');
         // dd(app('router'));
     }
     public function register()

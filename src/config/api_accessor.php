@@ -8,14 +8,7 @@ return [
      *
      */ 
     'database' => env("DB_CONNECTION", "mongodb") ,
-    /*
-     *
-     *
-     * @Route prefix for your laravel aplication to manage your api access key
-     *
-     *
-     */
-    'main_dashboard_route' => "dashboard",
+    
     /*
      *
      *
@@ -25,10 +18,9 @@ return [
      */
 
     "key_name" => "API_ACCESS_KEY",
-    "check_on" => "api/",
+    "check_on" => ["api/", "test/"],
     "check_test" => true,
-    "extends" => "welcome",
-    "extends_name" => "content",
+   
     /*
      *
      *

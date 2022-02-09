@@ -10,14 +10,34 @@ class ApiAccessMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        if ($request->is(config('access_config.check_on') . '*')) {
+
+        $check = false;
+        foreach (config('access_config.check_on') as $prefix) {
+            if ($request->is($prefix . '*')) {
+                $check = true;
+                break;
+            }
+        }
+        //   dd($check);
+        if ($check) {
             if (!$request->header(config('access_config.key_name'))) {
                 abort(403, "Unauthorized Request.");
             }
             if ($request->header(config('access_config.key_name'))) {
-                $check_key = AccessKey::where("key", $request->header(config('access_config.key_name')))->first();
+                // $keys = AccessKey::where("status", true)->get();
+                // // dd($keys);
+                // $valid = false;
+                // foreach($keys as $keyItem){
+                //     // if(Hash::check($,   $keyItem->key)){
 
-                if ($check_key && $check_key->status == true) {
+                //     // }
+
+                // }
+                $check_key = AccessKey::where("key", $request->header(config('access_config.key_name')))
+                    ->where('status', true)
+                    ->first();
+
+                if ($check_key) {
                     return $next($request);
                 } else {
                     // return response()->json()
