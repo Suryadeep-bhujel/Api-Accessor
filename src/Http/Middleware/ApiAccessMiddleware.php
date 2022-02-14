@@ -12,7 +12,7 @@ class ApiAccessMiddleware
     {
 
        
-        if(config('access_config.enabled') == true){
+        if(config('access_config.enabled') == true){ 
             $check = false;
             foreach (config('access_config.check_on') as $prefix) {
                 if ($request->is($prefix . '*')) {
