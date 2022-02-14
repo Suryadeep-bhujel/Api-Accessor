@@ -25,9 +25,25 @@ return [
      */
 
     "key_name" => "API_ACCESS_KEY",
+    /*
+     *
+     *
+     * @all the uri  prefix for  enable checking  key,
+     *@array
+     *
+     */
     "check_on" => ["api/", "test/"],
     "check_test" => true,
     "extends_name" => "content",
+    /*
+     *
+     *
+     * @enable or disable this package for application
+     *
+     *
+     */
+    "enabled" => true, 
+
     /*
      *
      *
