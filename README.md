@@ -52,11 +52,12 @@ composer require bhujel/secret-header
 -Now your package is ready  you can visit access dashboard using  your {your app url}/dashboard/accessor
 
 ```bash 
-{your app url}/dashboard/accessor
+   {your app url}/dashboard/accessor
 ```
 <p>Access Key list is below url</p> 
+
 ```bash 
-{your app url}/dashboard/access_keys
+   {your app url}/dashboard/access_keys
 ```
 
 <p> You can add TEST or LIVE API ACCESS keys and maintain your api if required.</p>
