@@ -21,7 +21,7 @@ class ApiAccessMiddleware
 
         if ($check) {
             if (!$request->header(config('access_config.key_name'))) {
-                abort(403, "Unauthorized Request.");
+                abort(403, "Unauthorized Request. Required Header does not exists on request.");
             }
             if ($request->header(config('access_config.key_name'))) {
                 if (config("access_config.use_cache")) {
