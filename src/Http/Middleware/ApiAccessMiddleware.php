@@ -12,27 +12,27 @@ class ApiAccessMiddleware
     {
 
        
-        if(config('access_config.enabled') == true){ 
+        if(config("api_accessor.enabled") == true){ 
             $check = false;
-            foreach (config('access_config.check_on') as $prefix) {
+            foreach (config('api_accessor.check_on') as $prefix) {
                 if ($request->is($prefix . '*')) {
                     $check = true;
                     break;
                 }
             }
             if ($check) {
-                if (!$request->header(config('access_config.key_name'))) {
+                if (!$request->header(config('api_accessor.key_name'))) {
                     abort(403, "Unauthorized Request. Required Header does not exists on request.");
                 }
-                if ($request->header(config('access_config.key_name'))) {
-                    if (config("access_config.use_cache")) {
-                        $check_key = cache()->remember($request->header(config('access_config.key_name')), config('access_config.cache_duration'), function () use ($request) {
-                            return AccessKey::where("key", $request->header(config('access_config.key_name')))
+                if ($request->header(config('api_accessor.key_name'))) {
+                    if (config("api_accessor.use_cache")) {
+                        $check_key = cache()->remember($request->header(config('api_accessor.key_name')), config('api_accessor.cache_duration'), function () use ($request) {
+                            return AccessKey::where("key", $request->header(config('api_accessor.key_name')))
                                 ->where('status', true)
                                 ->first();
                         });
                     } else {
-                        $check_key = AccessKey::where("key", $request->header(config('access_config.key_name')))
+                        $check_key = AccessKey::where("key", $request->header(config('api_accessor.key_name')))
                             ->where('status', true)
                             ->first();
                     }
