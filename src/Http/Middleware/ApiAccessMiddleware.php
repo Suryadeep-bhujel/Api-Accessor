@@ -24,10 +24,17 @@ class ApiAccessMiddleware
                 abort(403, "Unauthorized Request.");
             }
             if ($request->header(config('access_config.key_name'))) {
-
-                $check_key = AccessKey::where("key", $request->header(config('access_config.key_name')))
-                    ->where('status', true)
-                    ->first();
+                if (config("access_config.use_cache")) {
+                    $check_key = cache()->remember($request->header(config('access_config.key_name')), config('access_config.cache_duration'), function () use ($request) {
+                        return AccessKey::where("key", $request->header(config('access_config.key_name')))
+                            ->where('status', true)
+                            ->first();
+                    });
+                } else {
+                    $check_key = AccessKey::where("key", $request->header(config('access_config.key_name')))
+                        ->where('status', true)
+                        ->first();
+                }
 
                 if ($check_key) {
                     return $next($request);

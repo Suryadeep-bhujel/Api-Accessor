@@ -35,7 +35,25 @@ return [
      *@array
      *
      */
+    
     "middleware" => ['web'],
+    /*
+     *
+     *
+     * @use laravel caching to disable recurring query 
+     *@ change  value as true  for use caching and false for direct querying to database
+     *
+     */
+    "use_cache" => false,
+    /*
+     *
+     *
+     * @api key access from cached data
+     *@caching time in hour
+     *
+     */
+    
+    "cache_duration" => 24, 
     // "primary_key" => ,
 
 ];
