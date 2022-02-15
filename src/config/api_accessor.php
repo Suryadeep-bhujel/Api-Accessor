@@ -52,7 +52,7 @@ return [
      *
      */
     
-    "middleware" => ['web'],
+    "middleware" => ['web', 'auth'],
     /*
      *
      *
