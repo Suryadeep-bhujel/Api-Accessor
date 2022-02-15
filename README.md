@@ -70,7 +70,7 @@ composer require bhujel/secret-header
 1. Add one api key with active status. 
 2. From api_processor.php file inside your config dir of application has predefined keys for package. Default api access key header is 
 ```bash 
-API_ACCESS_KEY 
+API-ACCESS-KEY 
 ```
 <p> but recomanded to setup your custom key name.</p>
 <p> Copy and add paste your api key to your key name header. </p>
