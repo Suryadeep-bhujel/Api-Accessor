@@ -64,7 +64,7 @@ class AccesskeyController extends Controller
             $data = $request->except('_token');
             $data['addedBy'] = @auth()->user()->id;
             $data['key'] = Hash::make($request->title . "-" . \Str::random(10));
-
+            $data['status'] = $request->status == 1 ? true :false; 
             AccessKey::create($data);
             $request->session()->flash("New Access key successfully added. ");
             return redirect()->route("access_keys.index");
@@ -123,6 +123,7 @@ class AccesskeyController extends Controller
         try {
             $data = $request->except('_token');
             $data['addedBy'] = @auth()->user()->id;
+            $data['status'] = $request->status == 1 ? true :false; 
 
             $key_info->update($data);
             $request->session()->flash("Access key successfully updated. ");
