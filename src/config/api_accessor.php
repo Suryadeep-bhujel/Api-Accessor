@@ -24,7 +24,7 @@ return [
      *
      */
 
-    "key_name" => "API_ACCESS_KEY",
+    "key_name" => "API-ACCESS-KEY",
     /*
      *
      *
