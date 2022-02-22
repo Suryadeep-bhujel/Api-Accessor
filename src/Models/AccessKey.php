@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  
 use Illuminate\Support\Str;
 
-if (config("access_config.database") == 'mysql' || config("access_config.database") == null) {
+if (config("api_accessor.database") == 'mysql' || config("api_accessor.database") == null) {
     class ModelFinder extends \Illuminate\Database\Eloquent\Model
 
     {
     }
 }
 
-if (config("access_config.database") == 'mongodb') {
+if (config("api_accessor.database") == 'mongodb') {
     class ModelFinder extends \Jenssegers\Mongodb\Eloquent\Model
 
     {
