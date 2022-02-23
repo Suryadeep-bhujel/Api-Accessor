@@ -5,7 +5,7 @@ namespace Bhujel\SecretHeader\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Bhujel\SecretHeader\Models\AccessKey;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AccesskeyController extends Controller
 {
@@ -63,7 +63,13 @@ class AccesskeyController extends Controller
 
             $data = $request->except('_token');
             $data['addedBy'] = @auth()->user()->id;
-            $data['key'] = Hash::make($request->title . "-" . \Str::random(10));
+            if($request->type == 'live'){
+                $key =  "live_public_key_".Str::random(50);
+            }else if ($request->type == 'test'){
+                $key =  "test_public_key_".Str::random(50);
+
+            }
+            $data['key'] = $key;
             $data['status'] = $request->status == 1 ? true :false; 
             AccessKey::create($data);
             $request->session()->flash("New Access key successfully added. ");
