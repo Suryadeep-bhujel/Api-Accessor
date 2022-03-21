@@ -11,7 +11,6 @@ class ApiAccessMiddleware
     public function handle(Request $request, Closure $next)
     {
 
-       
         if(config("api_accessor.enabled") == true){ 
             $check = false;
             foreach (config('api_accessor.check_on') as $prefix) {

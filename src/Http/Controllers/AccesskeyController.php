@@ -63,11 +63,10 @@ class AccesskeyController extends Controller
 
             $data = $request->except('_token');
             $data['addedBy'] = @auth()->user()->id;
-            if($request->type == 'live'){
+            if($request->environment == 'live'){
                 $key =  "live_public_key_".Str::random(50);
-            }else if ($request->type == 'test'){
+            }else if ($request->environment == 'test'){
                 $key =  "test_public_key_".Str::random(50);
-
             }
             $data['key'] = $key;
             $data['status'] = $request->status == 1 ? true :false; 

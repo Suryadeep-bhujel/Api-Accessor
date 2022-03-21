@@ -17,7 +17,6 @@ class AddExtraFieldToRequest
     public function handle(Request $request, Closure $next)
     {
         $request->request->add(['environment' => env('ENV_TYPE') && in_array(env('ENV_TYPE'), ['test', 'live'])   ? env("ENV_TYPE") : 'test']);
-        // dd($request->all());
         return $next($request);
     }
 }

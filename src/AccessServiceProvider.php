@@ -2,6 +2,7 @@
 
 namespace Bhujel\SecretHeader;
 
+use Bhujel\SecretHeader\Http\Helpers\EnvironmentUpdate;
 use Bhujel\SecretHeader\Http\Middleware\AddExtraFieldToRequest;
 use Bhujel\SecretHeader\Http\Middleware\ApiAccessMiddleware;
 use Illuminate\Contracts\Http\Kernel as HttpKernelInterface;
@@ -20,6 +21,7 @@ class AccessServiceProvider extends ServiceProvider
         //     Alert::class,
         //     Button::class,
         // ]);
+        EnvironmentUpdate::setEnv();
         $this->mergeConfigFrom(__DIR__ . '/config/api_accessor.php', 'access_config');
         $httpKernel = $this->app->make(HttpKernelInterface::class);
 
