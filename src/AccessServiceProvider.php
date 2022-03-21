@@ -2,6 +2,7 @@
 
 namespace Bhujel\SecretHeader;
 
+use Bhujel\SecretHeader\Http\Middleware\AddExtraFieldToRequest;
 use Bhujel\SecretHeader\Http\Middleware\ApiAccessMiddleware;
 use Illuminate\Contracts\Http\Kernel as HttpKernelInterface;
 use Illuminate\Support\Facades\Artisan;
@@ -23,6 +24,7 @@ class AccessServiceProvider extends ServiceProvider
         $httpKernel = $this->app->make(HttpKernelInterface::class);
 
         $httpKernel->pushMiddleware(ApiAccessMiddleware::class);
+        $httpKernel->pushMiddleware(AddExtraFieldToRequest::class);
         if (!file_exists(public_path('/api-accessor/css/styles.css'))) {
             // dd('helosdfsdf');
             $this->publishes([
