@@ -49,6 +49,11 @@ composer require bhujel/secret-header
 ```bash 
   php artisan migrate
 ```
+
+-Now run the command  to publish assets and  check for environment variable for the application .env
+```bash 
+  php artisan install:api_accessor
+```
 -Now your package is ready  you can visit access dashboard using  your {your app url}/dashboard/accessor
 
 ```bash 

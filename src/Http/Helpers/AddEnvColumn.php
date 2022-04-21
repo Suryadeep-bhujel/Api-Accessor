@@ -21,11 +21,11 @@ abstract class AddEnvColumn
                     });
                 }
             }
-            self::setEnv("IS_API_ENV", "true");
+            self::setEnv("IS_API_ENV", "true #DO NOT remove this key value for api_accessor ");
 
         }
         if(!env("ENV_TYPE") || empty(env("ENV_TYPE"))){
-            self::setEnv("ENV_TYPE", "live");  
+            self::setEnv("ENV_TYPE", "live  #api_accessor environment");  
         }
     }
     public static function setEnv($envKey, $envValue)
