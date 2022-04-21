@@ -33,8 +33,12 @@ class AccessServiceProvider extends ServiceProvider
 
         $httpKernel->pushMiddleware(ApiAccessMiddleware::class);
         $httpKernel->pushMiddleware(AddExtraFieldToRequest::class);
-       
-        Artisan::call("vendor:publish --tag=public --force");
+        if (!file_exists(public_path('/api-accessor/css/styles.css'))) {
+            $this->publishes([
+                __DIR__ . '/public' => public_path('/api-accessor'),
+            ], 'public');
+            Artisan::call("vendor:publish --tag=public --force");
+        }
         $this->publishes([
             __DIR__ . '/config/api_accessor.php' => config_path('api_accessor.php'),
         ], 'api-accessor');

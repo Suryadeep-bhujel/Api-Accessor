@@ -17,7 +17,7 @@ abstract class AddEnvColumn
                 $tablename = $table->$tablename;
                 if (!Schema::hasColumn($tablename, 'environment')) {
                     Schema::table($tablename, function (Blueprint $table) {
-                        $table->string("environment")->default("test");
+                        $table->string("environment")->default("live");
                     });
                 }
             }

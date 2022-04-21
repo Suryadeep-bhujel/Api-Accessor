@@ -39,8 +39,8 @@ class SetupApiAccessor extends Command
     {
         // dd("./../public");
         AddEnvColumn::checkForColumn();
-        if (!file_exists(public_path('/api-accessor/css/styles.css'))) {
-            copy("./../public",public_path('/api-accessor'));
-        }
+        // if (!file_exists(public_path('/api-accessor/css/styles.css'))) {
+        //     copy("./../public",public_path('/api-accessor'));
+        // }
     }
 }
