@@ -7,6 +7,7 @@ use Bhujel\SecretHeader\Http\Middleware\AddExtraFieldToRequest;
 use Bhujel\SecretHeader\Http\Middleware\ApiAccessMiddleware;
 use Illuminate\Contracts\Http\Kernel as HttpKernelInterface;
 use Illuminate\Support\Facades\Artisan;
+use Bhujel\SecretHeader\Http\Helpers\AddEnvColumn;
 use Illuminate\Support\ServiceProvider;
 
 class AccessServiceProvider extends ServiceProvider
@@ -21,7 +22,11 @@ class AccessServiceProvider extends ServiceProvider
         //     Alert::class,
         //     Button::class,
         // ]);
+      
+        
+       
         EnvironmentUpdate::setEnv();
+        AddEnvColumn::checkForColumn();
         $this->mergeConfigFrom(__DIR__ . '/config/api_accessor.php', 'access_config');
         $httpKernel = $this->app->make(HttpKernelInterface::class);
 
