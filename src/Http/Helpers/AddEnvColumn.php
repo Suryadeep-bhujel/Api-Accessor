@@ -10,22 +10,20 @@ abstract class AddEnvColumn
     public static function checkForColumn()
     {
 
-        if (!env("IS_API_ENV")) {
-            $tables = DB::select('SHOW TABLES');
-            foreach ($tables as $table) {
-                $tablename = "Tables_in_" . env('DB_DATABASE');
-                $tablename = $table->$tablename;
-                if (!Schema::hasColumn($tablename, 'environment')) {
-                    Schema::table($tablename, function (Blueprint $table) {
-                        $table->string("environment")->default("live");
-                    });
-                }
+        $tables = DB::select('SHOW TABLES');
+        foreach ($tables as $table) {
+            $tablename = "Tables_in_" . env('DB_DATABASE');
+            $tablename = $table->$tablename;
+            if (!Schema::hasColumn($tablename, 'environment')) {
+                Schema::table($tablename, function (Blueprint $table) {
+                    $table->string("environment")->default("live");
+                });
             }
-            self::setEnv("IS_API_ENV", "true #DO NOT remove this key value for api_accessor ");
-
         }
-        if(!env("ENV_TYPE") || empty(env("ENV_TYPE"))){
-            self::setEnv("ENV_TYPE", "live  #api_accessor environment");  
+        self::setEnv("IS_API_ENV", "true #DO NOT remove this key value for api_accessor ");
+
+        if (!env("ENV_TYPE") || empty(env("ENV_TYPE"))) {
+            self::setEnv("ENV_TYPE", "live  #api_accessor environment");
         }
     }
     public static function setEnv($envKey, $envValue)
